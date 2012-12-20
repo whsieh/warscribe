@@ -1,0 +1,9 @@
+*.jnlp
+*.html
+*.class
+*.properties
+*.policy
+build.xml
+.nbproject/
+.dist/
+.bin/
