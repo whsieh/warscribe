@@ -116,7 +116,7 @@ public class DMFrame extends javax.swing.JFrame {
 		});
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("WarScribe v2.0.2");
+		setTitle("WarScribe v2.0.5");
 		setResizable(false);
 
 		addField.setText("");
@@ -1103,7 +1103,7 @@ public class DMFrame extends javax.swing.JFrame {
 	public String[] updateList() {
 		String[] updated = new String[combatants.size()];
 		for (int c = 0; c < combatants.size(); c++)
-			updated[c] = combatants.get(c).getCombatantName();
+			updated[c] = combatants.get(c).getCombatantNameWithInitiative();
 		return updated;
 	}
 

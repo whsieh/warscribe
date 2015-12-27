@@ -29,7 +29,7 @@ public class MenuFrame extends javax.swing.JFrame {
 		infoTextArea = new javax.swing.JTextArea();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("WarScribe v2.0.3");
+		setTitle("WarScribe v2.0.5");
 		setResizable(false);
 
 		dmBtn.setFont(new java.awt.Font("Sylfaen", 2, 18));

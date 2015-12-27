@@ -240,3 +240,5 @@ Jessica;1;0;26;1d20+7;
 testmonster2;5;300;55;1d20+0;
 testmonster3;1;50;15;1d20+0;
 TestMonster;1;10;12;1d20+2;
+Jawn;17;350;90;1d20+5;WAWN PAWNCH,100,1d20+100;
+Doppelganger Assassin;8;350;69;1d20+13;Dagger,5,1d20+5;

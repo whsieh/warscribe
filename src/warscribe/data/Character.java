@@ -77,7 +77,7 @@ public class Character {
 		StringBuilder line = new StringBuilder();
 		line.append(String.format("%s;%d;%d;%d;%s;", name, level, experience, maxHealth, initiative));
 		for (Attack attack : attacks)
-			line.append(String.format("%s;%d;%s;", attack.attackName, attack.hitMod, attack.damageRoll));
+			line.append(String.format("%s,%d,%s;", attack.attackName, attack.hitMod, attack.damageRoll));
 		return line.toString();
 	}
 
@@ -206,16 +206,26 @@ public class Character {
 		}
 		return false;
 	}
-
+	
 	public String getCombatantName() {
+		return getCombatantNameWithInitiative(false);
+	}
+
+	public String getCombatantNameWithInitiative() {
+		return getCombatantNameWithInitiative(true);
+	}
+	
+	private String getCombatantNameWithInitiative(boolean showInitiative) {
 		if (duplicateCount == 0)
-			return name;
+			return showInitiative && currentInitiative > 0 ? String.format("[%d] %s", currentInitiative, name) : name;
 
 		// Adding 1 to the duplicate count means that duplicate combatants will
-		// be numbered
-		// starting at (2), so the original combatant will not display a
-		// duplicate count.
-		return String.format("%s (%d)", name, duplicateCount + 1);
+		// be numbered starting at (2), so the original combatant will not display
+		// a duplicate count.
+		if (showInitiative && currentInitiative > 0)
+			return String.format("[%d] %s #%d", currentInitiative, name, duplicateCount + 1);
+		
+		return String.format("%s #%d", name, duplicateCount + 1);
 	}
 
 	public String infoText() {

@@ -18,12 +18,15 @@ import warscribe.data.Attack;
 import warscribe.data.Player;
 import warscribe.data.Power;
 import warscribe.data.Roller;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PlayerFrame extends javax.swing.JFrame {
 
 	public PlayerFrame() {
 		initComponents();
-		setBounds(100, 100, getWidth(), getHeight());
+		setBounds(100, 100, 1047, 704);
 		healthBar.setValue(0);
 		disableAll();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,10 +37,10 @@ public class PlayerFrame extends javax.swing.JFrame {
 
 	private void initComponents() {
 		// INTERNAL COMPONENTS
-		fXmlFile = null;
+		characterFile = null;
 		fc = new javax.swing.JFileChooser();
 		player = null;
-		filename = "";
+		characterFileName = "";
 		selectedPower = null;
 		selectedWeapon = null;
 
@@ -107,7 +110,7 @@ public class PlayerFrame extends javax.swing.JFrame {
 		combatAdvCheck = new javax.swing.JCheckBox();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("WarScribe v2.0.2");
+		setTitle("WarScribe v2.0.5");
 		setResizable(false);
 
 		healthPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Health", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Sylfaen", 0, 13), new java.awt.Color(153, 0, 0))); // NOI18N
@@ -164,32 +167,48 @@ public class PlayerFrame extends javax.swing.JFrame {
 		});
 
 		javax.swing.GroupLayout healthPanelLayout = new javax.swing.GroupLayout(healthPanel);
+		healthPanelLayout.setHorizontalGroup(
+			healthPanelLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(healthPanelLayout.createSequentialGroup()
+					.addGroup(healthPanelLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(healthPanelLayout.createSequentialGroup()
+							.addGroup(healthPanelLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(healthField)
+								.addComponent(dmgSpinner, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(healthPanelLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(healthBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(dmgBtn, GroupLayout.PREFERRED_SIZE, 125, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(healthPanelLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(healingSurgeBtn, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+								.addComponent(healingSurgeLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(resetSurgeBtn, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
+						.addComponent(healthBar, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		healthPanelLayout.setVerticalGroup(
+			healthPanelLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(healthPanelLayout.createSequentialGroup()
+					.addGroup(healthPanelLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(healthPanelLayout.createSequentialGroup()
+							.addGroup(healthPanelLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(dmgSpinner, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+								.addComponent(dmgBtn, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
+							.addGap(8)
+							.addGroup(healthPanelLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(healthBtn, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+								.addComponent(healthField, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
+						.addGroup(healthPanelLayout.createSequentialGroup()
+							.addComponent(healingSurgeLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(healingSurgeBtn, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(resetSurgeBtn, GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(healthBar, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+		);
 		healthPanel.setLayout(healthPanelLayout);
-		healthPanelLayout.setHorizontalGroup(healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						healthPanelLayout.createSequentialGroup().addGroup(
-										healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addGroup(
-														javax.swing.GroupLayout.Alignment.LEADING,
-														healthPanelLayout.createSequentialGroup().addGroup(
-																		healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(healthField, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE).addComponent(dmgSpinner,
-																						javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
-																		healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false).addComponent(healthBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(dmgBtn,
-																						javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
-																		healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(healingSurgeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE).addComponent(healingSurgeLabel,
-																						javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE).addComponent(resetSurgeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))).addComponent(healthBar,
-														javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)).addContainerGap()));
-		healthPanelLayout.setVerticalGroup(healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						healthPanelLayout.createSequentialGroup().addGroup(
-										healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-														javax.swing.GroupLayout.Alignment.TRAILING,
-														healthPanelLayout.createSequentialGroup().addGroup(
-																		healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(dmgSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE).addComponent(dmgBtn, javax.swing.GroupLayout.DEFAULT_SIZE,
-																						46, Short.MAX_VALUE)).addGap(8, 8, 8).addGroup(
-																		healthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(healthField, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE).addComponent(healthBtn, javax.swing.GroupLayout.DEFAULT_SIZE,
-																						44, Short.MAX_VALUE))).addGroup(
-														healthPanelLayout.createSequentialGroup().addComponent(healingSurgeLabel).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(healingSurgeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-																		javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(resetSurgeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))).addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(healthBar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		CombatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Combat Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Sylfaen", 0, 13), new java.awt.Color(102, 0, 0))); // NOI18N
 
@@ -476,14 +495,25 @@ public class PlayerFrame extends javax.swing.JFrame {
 		});
 
 		javax.swing.GroupLayout managePanelLayout = new javax.swing.GroupLayout(managePanel);
+		managePanelLayout.setHorizontalGroup(
+			managePanelLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(managePanelLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(managePanelLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(loadBtn, GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+						.addComponent(refreshBtn, GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		managePanelLayout.setVerticalGroup(
+			managePanelLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(managePanelLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(loadBtn, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(refreshBtn, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(40, Short.MAX_VALUE))
+		);
 		managePanel.setLayout(managePanelLayout);
-		managePanelLayout.setHorizontalGroup(managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						managePanelLayout.createSequentialGroup().addContainerGap().addGroup(
-										managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(loadBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE).addComponent(refreshBtn,
-														javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)).addContainerGap()));
-		managePanelLayout.setVerticalGroup(managePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						managePanelLayout.createSequentialGroup().addContainerGap().addComponent(loadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-										javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(28, Short.MAX_VALUE)));
 
 		manageTabPanel.addTab("Manage", managePanel);
 
@@ -588,30 +618,51 @@ public class PlayerFrame extends javax.swing.JFrame {
 		});
 
 		javax.swing.GroupLayout attackPanelLayout = new javax.swing.GroupLayout(attackPanel);
+		attackPanelLayout.setHorizontalGroup(
+			attackPanelLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(attackPanelLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(attackPanelLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(attackPanelLayout.createSequentialGroup()
+							.addGroup(attackPanelLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(attackPanelLayout.createSequentialGroup()
+									.addComponent(hitField, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(dmgField, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
+								.addComponent(rollBtn, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(attackPanelLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(combatAdvCheck)
+								.addComponent(sneakCheck)))
+						.addComponent(powerScroll, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(attackPanelLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(infoScroll, 0, 0, Short.MAX_VALUE)
+						.addComponent(weaponListScroll, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+					.addGap(38))
+		);
+		attackPanelLayout.setVerticalGroup(
+			attackPanelLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(attackPanelLayout.createSequentialGroup()
+					.addGroup(attackPanelLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(attackPanelLayout.createSequentialGroup()
+							.addComponent(weaponListScroll, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(infoScroll, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+						.addGroup(attackPanelLayout.createSequentialGroup()
+							.addComponent(powerScroll, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(attackPanelLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(dmgField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(sneakCheck)
+								.addComponent(hitField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(attackPanelLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(combatAdvCheck)
+								.addComponent(rollBtn, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap())
+		);
 		attackPanel.setLayout(attackPanelLayout);
-		attackPanelLayout.setHorizontalGroup(attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						attackPanelLayout.createSequentialGroup().addContainerGap().addGroup(
-										attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-														attackPanelLayout.createSequentialGroup().addGroup(
-																		attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-																						attackPanelLayout.createSequentialGroup().addComponent(hitField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(
-																										javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(dmgField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)).addComponent(rollBtn,
-																						javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addGroup(
-																		attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(combatAdvCheck).addComponent(sneakCheck))).addComponent(powerScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
-														attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(infoScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
-																		weaponListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(14, 14, 14)));
-		attackPanelLayout.setVerticalGroup(attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						attackPanelLayout.createSequentialGroup().addGroup(
-										attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addGroup(
-														attackPanelLayout.createSequentialGroup().addComponent(weaponListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(infoScroll,
-																		javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)).addGroup(
-														attackPanelLayout.createSequentialGroup().addComponent(powerScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
-																		attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false).addComponent(dmgField).addComponent(sneakCheck).addComponent(hitField))
-																		.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
-																						attackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(combatAdvCheck).addComponent(rollBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39,
-																										javax.swing.GroupLayout.PREFERRED_SIZE)))).addContainerGap()));
 
 		combatPane.addTab("Combat", attackPanel);
 
@@ -670,25 +721,43 @@ public class PlayerFrame extends javax.swing.JFrame {
 		characterLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(characterLabel, GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(CombatPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(skillScrollPanel, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+						.addComponent(healthPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(combatPane, GroupLayout.PREFERRED_SIZE, 553, GroupLayout.PREFERRED_SIZE)
+						.addComponent(manageTabPanel, GroupLayout.PREFERRED_SIZE, 543, GroupLayout.PREFERRED_SIZE))
+					.addGap(12))
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(characterLabel, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(combatPane, GroupLayout.PREFERRED_SIZE, 367, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(manageTabPanel, 0, 0, Short.MAX_VALUE))
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(healthPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addComponent(skillScrollPanel, GroupLayout.PREFERRED_SIZE, 387, GroupLayout.PREFERRED_SIZE)
+								.addComponent(CombatPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap())
+		);
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup().addContainerGap().addGroup(
-										layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addComponent(characterLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE).addGroup(
-														javax.swing.GroupLayout.Alignment.LEADING,
-														layout.createSequentialGroup().addComponent(CombatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																		.addComponent(skillScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)).addComponent(healthPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addGroup(
-										layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false).addComponent(manageTabPanel).addComponent(combatPane, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)).addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup().addContainerGap().addComponent(characterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
-										layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-														layout.createSequentialGroup().addComponent(combatPane, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(manageTabPanel))
-														.addGroup(layout.createSequentialGroup().addComponent(healthPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
-																		layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false).addComponent(CombatPanel, 0, 382, Short.MAX_VALUE).addComponent(skillScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 382,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)))).addContainerGap()));
 
 		pack();
 	}
@@ -839,7 +908,7 @@ public class PlayerFrame extends javax.swing.JFrame {
 	}
 
 	private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {
-		parseXML();
+		parseCharacterFile();
 		manageTabPanel.setSelectedIndex(1);
 	}
 
@@ -857,7 +926,7 @@ public class PlayerFrame extends javax.swing.JFrame {
 			int healingSurges_ = -1;
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
+			Document doc = dBuilder.parse(characterFile);
 			doc.getDocumentElement().normalize();
 
 			NodeList details = doc.getElementsByTagName("Details");
@@ -942,7 +1011,7 @@ public class PlayerFrame extends javax.swing.JFrame {
 			updateUI();
 
 			output.setText("");
-			output.append("Loaded character: " + player.getName() + " from " + filename + "\n");
+			output.append("Loaded character: " + player.getName() + " from " + characterFileName + "\n");
 			output.setCaretPosition(output.getText().length() - 1);
 
 		} catch (Exception e) {
@@ -1352,16 +1421,36 @@ public class PlayerFrame extends javax.swing.JFrame {
 
 	}
 
+	// This is hideous but I don't feel like refactoring all the character loading code.
+	void parseCharacterFileFromJSON() {
+		// Implement me.
+	}
+	
 	/*
 	 * ==========================================================================
 	 * ==========================
 	 */
 
-	void parseXML() {
+	void parseCharacterFile() {
 		// Initialize file chooser window
 		int returnValue = fc.showOpenDialog(PlayerFrame.this);
 		// If the user confirms...
 		if (returnValue == javax.swing.JFileChooser.APPROVE_OPTION) {
+			
+			try {
+				// Sets 'openfile' as the user selected file
+				characterFile = fc.getSelectedFile();
+				// Sets filename as the name of 'openfile'
+				characterFileName = characterFile.getName();
+				if (characterFileName.contains(".json")) {
+					parseCharacterFileFromJSON();
+					return;
+				}
+			} catch (Exception e) {
+				output.append("Failed to load character file. Check that the file exists.");
+				return;
+			}
+			
 			try {
 				String name_ = "<Missing Name>";
 				int level_ = -1;
@@ -1370,13 +1459,9 @@ public class PlayerFrame extends javax.swing.JFrame {
 				String initiative_ = "1d20+0";
 				int[] stats_ = new int[23];
 				int healingSurges_ = -1;
-				// Sets 'openfile' as the user selected file
-				fXmlFile = fc.getSelectedFile();
-				// Sets filename as the name of 'openfile'
-				filename = fXmlFile.getName();
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				Document doc = dBuilder.parse(fXmlFile);
+				Document doc = dBuilder.parse(characterFile);
 				doc.getDocumentElement().normalize();
 
 				NodeList details = doc.getElementsByTagName("Details");
@@ -1461,12 +1546,11 @@ public class PlayerFrame extends javax.swing.JFrame {
 				updateUI();
 
 				output.setText("");
-				output.append("Loaded character: " + player.getName() + " from " + filename + "\n");
+				output.append("Loaded character: " + player.getName() + " from " + characterFileName + "\n");
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 
@@ -1887,10 +1971,10 @@ public class PlayerFrame extends javax.swing.JFrame {
 	public static javax.swing.JCheckBox combatAdvCheck;
 	public static javax.swing.JCheckBox sneakCheck;
 	// INTERNAL COMPONENTS
-	public static File fXmlFile;
+	public static File characterFile;
 	public static javax.swing.JFileChooser fc;
 	public static Player player;
-	public static String filename;
+	public static String characterFileName;
 	public static Power selectedPower;
 	public static Attack selectedWeapon;
 
