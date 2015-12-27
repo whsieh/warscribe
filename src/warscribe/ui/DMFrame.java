@@ -1,6 +1,7 @@
 package warscribe.ui;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,8 +13,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
 
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import warscribe.data.Attack;
@@ -28,6 +33,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JScrollPane;
 
 import java.awt.Font;
+
+import javax.swing.JButton;
 
 public class DMFrame extends javax.swing.JFrame {
 
@@ -87,6 +94,7 @@ public class DMFrame extends javax.swing.JFrame {
 		restrainedToggle = new javax.swing.JToggleButton();
 		encounterAdd = new javax.swing.JButton();
 		attackList = new javax.swing.JList();
+		attackList.setVisibleRowCount(6);
 		attackBtn = new javax.swing.JButton();
 		hitField = new javax.swing.JTextField();
 		jScrollPane5 = new javax.swing.JScrollPane();
@@ -386,66 +394,141 @@ public class DMFrame extends javax.swing.JFrame {
 														GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)).addGap(24)));
 		newMonsterPanel.setLayout(newMonsterPanelLayout);
 
-		outputTab.addTab("New Monster Creation", newMonsterPanel);
+		outputTab.addTab("New Monster", newMonsterPanel);
+		
+		addAttackBtn = new JButton("New attack");
+		addAttackBtn.setFont(new Font("Dialog", Font.PLAIN, 14));
+		addAttackBtn.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addAttackBtnActionPerformed(evt);
+			}
+		});
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(
-						layout.createSequentialGroup().addContainerGap().addGroup(
-										layout.createParallelGroup(Alignment.TRAILING).addGroup(
-														layout.createSequentialGroup().addGroup(
-																		layout.createParallelGroup(Alignment.TRAILING).addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE).addGroup(
-																						layout.createSequentialGroup().addComponent(addField, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE).addPreferredGap(ComponentPlacement.RELATED).addComponent(numberMonsterSpinner, GroupLayout.PREFERRED_SIZE,
-																										59, GroupLayout.PREFERRED_SIZE)).addComponent(encounterAdd, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)).addGap(14)).addComponent(initBtn, GroupLayout.DEFAULT_SIZE, 315,
-														Short.MAX_VALUE)).addPreferredGap(ComponentPlacement.RELATED).addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(
-										layout.createParallelGroup(Alignment.LEADING).addGroup(
-														layout.createParallelGroup(Alignment.LEADING, false).addComponent(jSeparator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(loadBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE).addGroup(
-																		layout.createSequentialGroup().addGroup(
-																						layout.createParallelGroup(Alignment.LEADING).addGroup(
-																										layout.createSequentialGroup().addComponent(damageSpinner, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE).addGap(18).addComponent(healthBar, GroupLayout.DEFAULT_SIZE, 360,
-																														Short.MAX_VALUE)).addGroup(
-																										layout.createSequentialGroup().addGroup(
-																														layout.createParallelGroup(Alignment.LEADING).addComponent(killBtn, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE).addComponent(dmgBtn, Alignment.TRAILING,
-																																		GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGap(18).addGroup(
-																														layout.createParallelGroup(Alignment.LEADING, false).addComponent(XPCheck, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(healthField,
-																																		GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))).addGroup(
-																										layout.createSequentialGroup().addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 333, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(
-																														layout.createParallelGroup(Alignment.LEADING, false).addComponent(restrainedToggle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(proneToggle,
-																																		GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(immobilizedToggle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-																																		Short.MAX_VALUE).addComponent(stunnedToggle, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)))).addPreferredGap(ComponentPlacement.UNRELATED)
-																						.addGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE).addGroup(
-																										layout.createParallelGroup(Alignment.LEADING).addComponent(hitField, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE).addComponent(damageField).addComponent(attackBtn, GroupLayout.DEFAULT_SIZE,
-																														115, Short.MAX_VALUE))).addGap(16))).addGroup(
-														layout.createSequentialGroup().addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 362, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE).addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 229,
-																		GroupLayout.PREFERRED_SIZE)).addComponent(outputTab, GroupLayout.PREFERRED_SIZE, 632, GroupLayout.PREFERRED_SIZE)).addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(
-						layout.createSequentialGroup().addContainerGap().addGroup(
-										layout.createParallelGroup(Alignment.TRAILING).addGroup(
-														layout.createSequentialGroup().addComponent(loadBtn, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(jSeparator2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(ComponentPlacement.RELATED).addGroup(
-																						layout.createParallelGroup(Alignment.LEADING).addGroup(
-																										layout.createSequentialGroup().addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(hitField,
-																														GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(damageField, GroupLayout.PREFERRED_SIZE, 34,
-																														GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(attackBtn)).addGroup(
-																										layout.createSequentialGroup().addGroup(
-																														layout.createParallelGroup(Alignment.LEADING).addGroup(
-																																		layout.createSequentialGroup().addComponent(stunnedToggle, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE).addGap(13).addComponent(immobilizedToggle,
-																																						GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(proneToggle,
-																																						GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(restrainedToggle,
-																																						GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-																																		.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(
-																														layout.createParallelGroup(Alignment.LEADING, false).addComponent(healthBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(damageSpinner))
-																														.addGap(18).addGroup(
-																																		layout.createParallelGroup(Alignment.BASELINE).addComponent(dmgBtn, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE).addComponent(healthField,
-																																						GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)).addPreferredGap(ComponentPlacement.RELATED).addGroup(
-																																		layout.createParallelGroup(Alignment.BASELINE).addComponent(killBtn).addComponent(XPCheck)))).addPreferredGap(ComponentPlacement.RELATED).addComponent(outputTab,
-																						GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addGroup(
-																						layout.createParallelGroup(Alignment.TRAILING).addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 31,
-																										GroupLayout.PREFERRED_SIZE))).addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE).addGroup(
-														layout.createSequentialGroup().addGroup(
-																		layout.createParallelGroup(Alignment.BASELINE).addComponent(addField, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE).addComponent(numberMonsterSpinner, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
-																		.addPreferredGap(ComponentPlacement.RELATED).addComponent(encounterAdd, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(jScrollPane1,
-																						GroupLayout.PREFERRED_SIZE, 511, GroupLayout.PREFERRED_SIZE).addPreferredGap(ComponentPlacement.RELATED).addComponent(initBtn, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))).addContainerGap()));
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(layout.createSequentialGroup()
+							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+								.addGroup(layout.createSequentialGroup()
+									.addComponent(addField, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(numberMonsterSpinner, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+								.addComponent(encounterAdd, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
+							.addGap(14))
+						.addComponent(initBtn, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(jSeparator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(loadBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup(Alignment.LEADING)
+									.addGroup(layout.createSequentialGroup()
+										.addComponent(damageSpinner, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addComponent(healthBar, GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+									.addGroup(layout.createSequentialGroup()
+										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+											.addComponent(killBtn, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+											.addComponent(dmgBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+										.addGap(18)
+										.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(XPCheck, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(healthField, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)))
+									.addGroup(layout.createSequentialGroup()
+										.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 333, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(restrainedToggle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(proneToggle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(immobilizedToggle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(stunnedToggle, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addGroup(layout.createParallelGroup(Alignment.LEADING)
+									.addGroup(layout.createSequentialGroup()
+										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+											.addComponent(hitField, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+											.addComponent(damageField)
+											.addComponent(attackBtn, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+										.addGap(16))
+									.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+										.addComponent(addAttackBtn)))))
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, 362, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+							.addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE))
+						.addComponent(outputTab, GroupLayout.PREFERRED_SIZE, 632, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(layout.createSequentialGroup()
+							.addComponent(loadBtn, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(jSeparator2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(layout.createSequentialGroup()
+									.addComponent(stunnedToggle, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+									.addGap(13)
+									.addComponent(immobilizedToggle, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(proneToggle, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(restrainedToggle, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+								.addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(layout.createSequentialGroup()
+									.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(healthBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(damageSpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(dmgBtn, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+										.addComponent(healthField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(killBtn)
+										.addComponent(XPCheck)))
+								.addGroup(layout.createSequentialGroup()
+									.addComponent(addAttackBtn)
+									.addGap(9)
+									.addComponent(hitField, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(damageField, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(attackBtn)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(outputTab, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(jScrollPane3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(clearBtn, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+						.addGroup(layout.createSequentialGroup()
+							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(addField, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+								.addComponent(numberMonsterSpinner, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(encounterAdd, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 511, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(initBtn, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
 		getContentPane().setLayout(layout);
 
 		JScrollPane monsterCatalogPane = new JScrollPane();
@@ -465,23 +548,14 @@ public class DMFrame extends javax.swing.JFrame {
 					return;
 
 				Character selectedCharacter = (Character) monsterCatalogList.getModel().getElementAt(selectedIndex);
+				combatList.clearSelection();
 				addField.setText(selectedCharacter.getName());
 				updateCharacterInfoDisplayWithCharacter(selectedCharacter);
+				updateMonsterDisplay(selectedCharacter);
+				addAttackBtn.setEnabled(false);
 			}
 		});
-		monsterCatalogList.addMouseListener(new MouseListener() {
-			public void mouseReleased(MouseEvent e) {
-			}
-
-			public void mousePressed(MouseEvent e) {
-			}
-
-			public void mouseExited(MouseEvent e) {
-			}
-
-			public void mouseEntered(MouseEvent e) {
-			}
-
+		monsterCatalogList.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() < 2 || e.getClickCount() % 2 == 1)
 					return;
@@ -562,6 +636,8 @@ public class DMFrame extends javax.swing.JFrame {
 			openfile = fc.getSelectedFile();
 			filename = openfile.getName();
 			Scanner in = null;
+			charactersByName = new HashMap<String, Character>();
+			library = new ArrayList<Character>();
 			int lastSuccessfullyParsedLineNumber = 0;
 			try {
 				in = new Scanner(openfile);
@@ -572,32 +648,12 @@ public class DMFrame extends javax.swing.JFrame {
 					if (line.trim().length() == 0)
 						continue;
 
-					String name_ = line.substring(0, line.indexOf(";")).trim();
-					line = line.substring(line.indexOf(";") + 1, line.length()).trim();
-
-					int lvl = Integer.parseInt(line.substring(0, line.indexOf(";")));
-					line = line.substring(line.indexOf(";") + 1, line.length()).trim();
-
-					int xp = Integer.parseInt(line.substring(0, line.indexOf(";")));
-					line = line.substring(line.indexOf(";") + 1, line.length()).trim();
-
-					int hp = Integer.parseInt(line.substring(0, line.indexOf(";")));
-					line = line.substring(line.indexOf(";") + 1, line.length()).trim();
-
-					String init = line.substring(0, line.indexOf(";"));
-					line = line.substring(line.indexOf(";") + 1, line.length()).trim();
-
-					Character newCharacter = new Character(name_, lvl, xp, hp, init);
-					library.add(newCharacter);
-					charactersByName.put(name_.toLowerCase(), newCharacter);
-
-					while (line.length() > 1) {
-						String newAtk = line.substring(0, line.indexOf(";"));
-						library.get(library.size() - 1).addAttack(new Attack(newAtk));
-						line = line.substring(line.indexOf(";") + 1, line.length()).trim();
-					}
+					// We only store the new characters into the hash map first, so that duplicate entries in the database will
+					// not pollute the character library, and the attributes of the characters will be defined by latter lines
+					// in the database.
+					Character newCharacter = Character.parseFromString(line);
+					charactersByName.put(newCharacter.getName().toLowerCase(), newCharacter);
 					lastSuccessfullyParsedLineNumber++;
-
 				}
 				createBtn.setEnabled(true);
 				nameField.setEnabled(true);
@@ -606,6 +662,18 @@ public class DMFrame extends javax.swing.JFrame {
 				hpField.setEnabled(true);
 				levelField.setEnabled(true);
 				monsterCatalogList.setEnabled(true);
+				
+				for (Character character : charactersByName.values()) {
+					library.add(character);
+				}
+				library.sort(new java.util.Comparator<Character>() {
+					public int compare(Character a, Character b) {
+						if (a.getLevel() != b.getLevel()) {
+							return a.getLevel() < b.getLevel() ? -1 : 1;
+						}
+						return a.getName().compareTo(b.getName());
+					}
+				});
 				outputArea.append("Successfully loaded: " + library.size() + " monsters.\n");
 				reloadMonsterCatalog();
 
@@ -661,12 +729,13 @@ public class DMFrame extends javax.swing.JFrame {
 	private void combatListValueChanged(javax.swing.event.ListSelectionEvent evt) {
 		int index = combatList.getSelectedIndex();
 		if (index != -1) {
-			updateMonsterDisplay(index);
+			updateMonsterDisplay(combatants.get(index));
 		} else {
 			infoArea.setText("");
 			attackBtn.setEnabled(false);
 			healthBar.setStringPainted(false);
 			healthBar.setValue(0);
+			addAttackBtn.setEnabled(false);
 		}
 	}
 
@@ -682,7 +751,7 @@ public class DMFrame extends javax.swing.JFrame {
 		try {
 			if (Integer.parseInt(input) > 0 && index != -1)
 				combatants.get(index).setHealth(Integer.parseInt(input));
-			updateMonsterDisplay(index);
+			updateMonsterDisplay(combatants.get(index));
 		} catch (Exception e) {
 		}
 	}
@@ -720,6 +789,63 @@ public class DMFrame extends javax.swing.JFrame {
 		combatList.clearSelection();
 	}
 
+	private void addAttackBtnActionPerformed(java.awt.event.ActionEvent event) {
+		JTextField nameField = new JTextField("");
+        JTextField hitModifierField = new JTextField("0");
+        JTextField damageRollField = new JTextField("1d4+0");
+        JPanel panel = new JPanel(new GridLayout(0, 1));
+        panel.add(new JLabel("Name"));
+        panel.add(nameField);
+        panel.add(new JLabel("Hit Modifier"));
+        panel.add(hitModifierField);
+        panel.add(new JLabel("Damage Roll (xdy+C)"));
+        panel.add(damageRollField);
+        int result = JOptionPane.showConfirmDialog(null, panel, "Add a new Attack", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (result == JOptionPane.OK_OPTION) {
+        	int selectedCombatantIndex = combatList.getSelectedIndex();
+        	if (selectedCombatantIndex == -1 || selectedCombatantIndex >= combatants.size()) {
+        		return;
+        	}
+        	Character selectedCombatant = combatants.get(selectedCombatantIndex);
+        	String name = nameField.getText().trim();
+        	Integer hitModifier = 0;
+        	try {
+        		hitModifier = Integer.parseInt(hitModifierField.getText().trim());
+        	} catch (NumberFormatException e) {
+        		return;
+        	}
+            String damageRoll = damageRollField.getText().trim();
+            if (name.length() == 0 || !Roller.isValidRollString(damageRoll))
+            	return;
+            
+            Attack newAttack = new Attack(name, hitModifier, damageRoll);
+            // First, update all relevant active combatants.
+            selectedCombatant.addAttack(newAttack);
+            for (Character combatant : combatants) {
+            	if (combatant == selectedCombatant)
+            		continue;
+
+            	if (combatant.getName().equals(selectedCombatant.getName()))
+            		combatant.addAttack(newAttack);
+            }
+            // Then update the library (through the names -> character map).
+            charactersByName.get(selectedCombatant.getName().toLowerCase()).addAttack(newAttack);
+            // Finally, update the database.
+            appendCharacterToDatabase(selectedCombatant);
+            outputArea.append("Successfully saved new attack '" + name + "' to database.\n");
+            updateMonsterDisplay(selectedCombatant);
+            reloadMonsterCatalog();
+        }
+	}
+	
+	private void appendCharacterToDatabase(Character c) {
+		try {
+			FileWriter savefile = new FileWriter(filename, true);
+			savefile.write("\n" + c.serializeAsString());
+			savefile.close();
+		} catch (Exception e) { }
+	}
+	
 	/*
 	 * ==========================================================================
 	 * ========================================
@@ -734,14 +860,8 @@ public class DMFrame extends javax.swing.JFrame {
 				}
 			if (!found)
 				try {
-					FileWriter savefile = new FileWriter(filename, true);
-					savefile.write("\n" + nameField.getText() + ";");
-					savefile.write(levelField.getText() + ";");
-					savefile.write(xpField.getText() + ";");
-					savefile.write(hpField.getText() + ";");
-					savefile.write(initField.getText() + ";");
-					savefile.close();
 					Character newCharacter = new Character(nameField.getText(), Integer.parseInt(levelField.getText()), Integer.parseInt(xpField.getText()), Integer.parseInt(hpField.getText()), initField.getText());
+					appendCharacterToDatabase(newCharacter);
 					library.add(newCharacter);
 					charactersByName.put(newCharacter.getName().toLowerCase(), newCharacter);
 					outputArea.append("Successfully added: " + nameField.getText() + " to the database.\n");
@@ -996,23 +1116,24 @@ public class DMFrame extends javax.swing.JFrame {
 		try {
 			int dmg = (Integer) damageSpinner.getValue();
 			int index = combatList.getSelectedIndex();
+			Character character = combatants.get(index);
 			if (dmg > 0 && index != -1) {
-				combatants.get(index).setHealth(combatants.get(index).getHealth() - dmg);
-				updateMonsterDisplay(index);
-				outputArea.append(combatants.get(index).getName() + " loses " + dmg + " hp.\n");
+				character.setHealth(character.getHealth() - dmg);
+				updateMonsterDisplay(character);
+				outputArea.append(character.getName() + " loses " + dmg + " hp.\n");
 			}
 			if (dmg < 0 && index != -1) {
-				combatants.get(index).setHealth(combatants.get(index).getHealth() - dmg);
-				updateMonsterDisplay(index);
-				outputArea.append(combatants.get(index).getName() + " recovers " + (-1 * dmg) + " hp.\n");
+				character.setHealth(character.getHealth() - dmg);
+				updateMonsterDisplay(character);
+				outputArea.append(character.getName() + " recovers " + (-1 * dmg) + " hp.\n");
 			}
-			if (combatants.get(index).getHealth() <= 0) {
-				combatants.get(index).setHealth(0);
-				updateMonsterDisplay(index);
-				outputArea.append(combatants.get(index).getName() + " has fallen in battle!\n");
+			if (character.getHealth() <= 0) {
+				character.setHealth(0);
+				updateMonsterDisplay(character);
+				outputArea.append(character.getName() + " has fallen in battle!\n");
 				if (XPCheck.isSelected()) {
-					outputArea.append("XP gained: " + combatants.get(index).getXP() + "\n");
-					totalXP += combatants.get(index).getXP();
+					outputArea.append("XP gained: " + character.getXP() + "\n");
+					totalXP += character.getXP();
 					XPArea.setText("Total XP Gained: " + totalXP);
 				}
 				outputArea.setCaretPosition(outputArea.getText().length() - 1);
@@ -1023,11 +1144,11 @@ public class DMFrame extends javax.swing.JFrame {
 		} catch (Exception e) {
 		}
 	}
-
-	public String[] updateAttacks(int index) {
-		String[] updated = new String[combatants.get(index).getAttacks().size()];
-		for (int c = 0; c < combatants.get(index).getAttacks().size(); c++)
-			updated[c] = combatants.get(index).getAttacks().get(c).getAttackName();
+	
+	public String[] updateAttacks(Character character) {
+		String[] updated = new String[character.getAttacks().size()];
+		for (int c = 0; c < character.getAttacks().size(); c++)
+			updated[c] = character.getAttacks().get(c).getAttackName();
 		return updated;
 	}
 
@@ -1119,14 +1240,15 @@ public class DMFrame extends javax.swing.JFrame {
 	 * ========================================
 	 */
 
-	public void updateMonsterDisplay(int index) {
-		updateCharacterInfoDisplayWithCharacter(combatants.get(index));
-		healthBar.setMaximum(combatants.get(index).getMaxHealth());
-		healthBar.setValue(combatants.get(index).getHealth());
+	public void updateMonsterDisplay(Character character) {
+		updateCharacterInfoDisplayWithCharacter(character);
+		healthBar.setMaximum(character.getMaxHealth());
+		healthBar.setValue(character.getHealth());
 		healthBar.setStringPainted(true);
-		healthBar.setString(combatants.get(index).getHealth() + "/" + combatants.get(index).getMaxHealth());
+		healthBar.setString(character.getHealth() + "/" + character.getMaxHealth());
+		addAttackBtn.setEnabled(true);
 
-		if (combatants.get(index).isStunned()) {
+		if (character.isStunned()) {
 			stunnedToggle.setSelected(true);
 			stunnedToggle.setFont(new java.awt.Font("Sylfaen", 1, 16));
 			stunnedToggle.setForeground(new java.awt.Color(153, 0, 0));
@@ -1136,7 +1258,7 @@ public class DMFrame extends javax.swing.JFrame {
 			stunnedToggle.setForeground(new java.awt.Color(0, 0, 0));
 		}
 
-		if (combatants.get(index).isImmobilized()) {
+		if (character.isImmobilized()) {
 			immobilizedToggle.setSelected(true);
 			immobilizedToggle.setFont(new java.awt.Font("Sylfaen", 1, 16));
 			immobilizedToggle.setForeground(new java.awt.Color(153, 0, 0));
@@ -1146,7 +1268,7 @@ public class DMFrame extends javax.swing.JFrame {
 			immobilizedToggle.setForeground(new java.awt.Color(0, 0, 0));
 		}
 
-		if (combatants.get(index).isProne()) {
+		if (character.isProne()) {
 			proneToggle.setSelected(true);
 			proneToggle.setFont(new java.awt.Font("Sylfaen", 1, 16));
 			proneToggle.setForeground(new java.awt.Color(153, 0, 0));
@@ -1156,7 +1278,7 @@ public class DMFrame extends javax.swing.JFrame {
 			proneToggle.setForeground(new java.awt.Color(0, 0, 0));
 		}
 
-		if (combatants.get(index).isRestrained()) {
+		if (character.isRestrained()) {
 			restrainedToggle.setSelected(true);
 			restrainedToggle.setFont(new java.awt.Font("Sylfaen", 1, 16));
 			restrainedToggle.setForeground(new java.awt.Color(153, 0, 0));
@@ -1166,8 +1288,7 @@ public class DMFrame extends javax.swing.JFrame {
 			restrainedToggle.setForeground(new java.awt.Color(0, 0, 0));
 		}
 
-		setAttacks(index);
-
+		setAttacks(character);
 	}
 
 	/*
@@ -1189,9 +1310,9 @@ public class DMFrame extends javax.swing.JFrame {
 		});
 	}
 
-	public void setAttacks(final int index) {
+	public void setAttacks(final Character character) {
 		attackList.setModel(new javax.swing.AbstractListModel() {
-			String[] names = updateAttacks(index);
+			String[] names = updateAttacks(character);
 
 			public int getSize() {
 				return names.length;
@@ -1273,6 +1394,7 @@ public class DMFrame extends javax.swing.JFrame {
 	public static javax.swing.JPanel newMonsterPanel;
 	public static javax.swing.JTabbedPane outputTab;
 	public static javax.swing.JList<Character> monsterCatalogList;
+	private javax.swing.JButton addAttackBtn;
 
 	private ArrayList<Character> monsterCatalogCharacters;
 }

@@ -67,6 +67,31 @@ public class Roller {
 			return sum;
 		}
 	}
+	
+	public static boolean isValidRollString(String roll) {
+		roll = roll.trim();
+		int separatorIndex = roll.indexOf("&");
+		if (separatorIndex >= 0) {
+			String rollStringBeforeFirstSeparator = roll.substring(0, separatorIndex);
+			String rollStringAfterFirstSeparator = roll.substring(separatorIndex + 1, roll.length());
+			return isValidRollString(rollStringAfterFirstSeparator) && isValidRollString(rollStringBeforeFirstSeparator);
+		}
+		try {
+			if (roll.indexOf("d") != -1 && roll.indexOf("+") != -1) {
+				Integer.parseInt(roll.substring(0, roll.indexOf("d")));
+				Integer.parseInt(roll.substring(roll.indexOf("d") + 1, roll.indexOf("+")));
+				Integer.parseInt(roll.substring(roll.indexOf("+") + 1, roll.length()));
+			} else if (roll.indexOf("d") != -1 && roll.indexOf("+") == -1) {
+				Integer.parseInt(roll.substring(0, roll.indexOf("d")));
+				Integer.parseInt(roll.substring(roll.indexOf("d") + 1, roll.length()));
+			} else {
+				Integer.parseInt(roll);
+			}
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
 
 	public static void randomTest(int num, int sides) {
 		int[] distr = new int[sides];

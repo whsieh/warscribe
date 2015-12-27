@@ -22,6 +22,32 @@ public class Character {
 	int currentHealth;
 	int currentInitiative;
 
+	public static Character parseFromString(String line) {
+		String name_ = line.substring(0, line.indexOf(";")).trim();
+		line = line.substring(line.indexOf(";") + 1, line.length()).trim();
+
+		int lvl = Integer.parseInt(line.substring(0, line.indexOf(";")));
+		line = line.substring(line.indexOf(";") + 1, line.length()).trim();
+
+		int xp = Integer.parseInt(line.substring(0, line.indexOf(";")));
+		line = line.substring(line.indexOf(";") + 1, line.length()).trim();
+
+		int hp = Integer.parseInt(line.substring(0, line.indexOf(";")));
+		line = line.substring(line.indexOf(";") + 1, line.length()).trim();
+
+		String init = line.substring(0, line.indexOf(";"));
+		line = line.substring(line.indexOf(";") + 1, line.length()).trim();
+
+		Character newCharacter = new Character(name_, lvl, xp, hp, init);
+		while (line.length() > 1) {
+			String newAtk = line.substring(0, line.indexOf(";"));
+			newCharacter.addAttack(new Attack(newAtk));
+			line = line.substring(line.indexOf(";") + 1, line.length()).trim();
+		}
+		
+		return newCharacter;
+	}
+	
 	public Character(String name_, int lvl, int xp, int hp, String init) {
 		name = name_;
 		level = lvl;
@@ -45,6 +71,14 @@ public class Character {
 			this.addAttack(attack);
 		}
 		this.duplicateCount = duplicateCount;
+	}
+	
+	public String serializeAsString() {
+		StringBuilder line = new StringBuilder();
+		line.append(String.format("%s;%d;%d;%d;%s;", name, level, experience, maxHealth, initiative));
+		for (Attack attack : attacks)
+			line.append(String.format("%s;%d;%s;", attack.attackName, attack.hitMod, attack.damageRoll));
+		return line.toString();
 	}
 
 	public int getXP() {
@@ -186,19 +220,17 @@ public class Character {
 
 	public String infoText() {
 		StringBuilder infoText = new StringBuilder();
-		infoText.append(String.format("%s\nLevel: %d\nExperience Gain: %d\nMax Health: %d", name, level, experience, maxHealth));
+		infoText.append(String.format("%s\nLevel: %d\nExperience Gain: %d\nMax Health: %d\n", name, level, experience, maxHealth));
 
 		if (maxHealth / 2.0 > currentHealth)
-			infoText.append("\nBloodied!");
+			infoText.append("Bloodied!\n");
 
-		infoText.append("\n");
 		if (attacks != null && attacks.size() > 0) {
-			infoText.append("\nAttacks:");
 			for (Attack attack : attacks) {
-				infoText.append("\n  - " + attack.attackName);
+				infoText.append("  - " + attack.attackName + "\n");
 			}
 		} else {
-			infoText.append("\nNo known attacks. You must update the database manually.");
+			infoText.append("\nNo known attacks.");
 		}
 
 		return infoText.toString();
