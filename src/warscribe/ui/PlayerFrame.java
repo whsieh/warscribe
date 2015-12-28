@@ -21,6 +21,7 @@ import warscribe.data.Roller;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import org.json.*;
 
 public class PlayerFrame extends javax.swing.JFrame {
 
@@ -1423,7 +1424,7 @@ public class PlayerFrame extends javax.swing.JFrame {
 
 	// This is hideous but I don't feel like refactoring all the character loading code.
 	void parseCharacterFileFromJSON() {
-		// Implement me.
+		
 	}
 	
 	/*
@@ -1436,7 +1437,6 @@ public class PlayerFrame extends javax.swing.JFrame {
 		int returnValue = fc.showOpenDialog(PlayerFrame.this);
 		// If the user confirms...
 		if (returnValue == javax.swing.JFileChooser.APPROVE_OPTION) {
-			
 			try {
 				// Sets 'openfile' as the user selected file
 				characterFile = fc.getSelectedFile();
